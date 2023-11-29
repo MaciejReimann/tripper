@@ -1,13 +1,13 @@
+import axios from "axios";
 import z from "zod";
-import trips from "./trips.json";
 
 export type Trip = z.infer<typeof tripSchema>;
 
 export const fetchTrips = async () => {
+  const { data: trips } = await axios.get("/trips");
   const dtos = trips.map(createTripDto);
 
-  // TODO: fetch trips from API
-  return Promise.resolve(dtos);
+  return dtos;
 };
 
 const tripAdvantageSchema = z.object({
