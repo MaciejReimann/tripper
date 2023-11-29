@@ -1,6 +1,10 @@
 import { Button } from "@chakra-ui/react";
 
-export const LearnMoreButton = () => {
+interface LearnMoreButtonProps {
+  renderChildren: (text: string) => React.ReactNode;
+}
+
+export const LearnMoreButton = ({ renderChildren }: LearnMoreButtonProps) => {
   return (
     <Button
       variant="solid"
@@ -8,7 +12,7 @@ export const LearnMoreButton = () => {
       color="text.white"
       fontSize="sm"
     >
-      Learn More
+      {renderChildren("Learn More")}
     </Button>
   );
 };

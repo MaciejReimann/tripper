@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Container, SimpleGrid, Center, useTheme } from "@chakra-ui/react";
 import pluralize from "pluralize";
+import { Link } from "react-router-dom";
 
 import { fetchTrips, Trip } from "./fetch-trips";
 import { TripCard } from "./trip-card";
@@ -38,7 +39,13 @@ export const TripList = ({}: TripListProps) => {
                 imageURL={trip.photoUrl}
                 title={trip.title}
                 info={formatTripInfo(trip.countries.length, trip.days)}
-                buttonComponent={<LearnMoreButton />}
+                buttonComponent={
+                  <LearnMoreButton
+                    renderChildren={(text) => (
+                      <Link to={`/${trip.id}`}>{text}</Link>
+                    )}
+                  />
+                }
                 offsetComponent={
                   <EmissionsOffsetDisplay
                     width={"100%"}
