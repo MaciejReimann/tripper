@@ -8,71 +8,75 @@ import {
   Button,
   VStack,
   Flex,
+  Box,
   FlexProps,
 } from "@chakra-ui/react";
 
 interface TripCardProps {
   imageURL: string;
   title: string;
+  info: string;
+  buttonComponent: React.ReactNode;
+  offsetComponent: React.ReactNode;
+  ratingComponent: React.ReactNode;
 }
 
-export const TripCard = ({ imageURL, title }: TripCardProps) => {
+export const TripCard = ({
+  imageURL,
+  title,
+  info,
+  buttonComponent,
+  offsetComponent,
+  ratingComponent,
+}: TripCardProps) => {
   return (
     <Card
       padding={[3]}
       backgroundColor="background.white"
-      borderRadius={"xl"}
-      variant={"elevated"}
+      borderRadius="xl"
+      variant="elevated"
+      shadow="xl"
     >
       <VStack
         backgroundImage={imageURL}
         background={`linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${imageURL})`}
         borderRadius={"md"}
         padding={[6]}
+        paddingBottom={0}
+        height={"100%"}
+        justifyContent="space-between"
       >
-        <CardHeader>
-          <Heading size="md" color="text.white" textAlign={"center"}>
+        <CardHeader paddingBottom={[0]}>
+          <Heading
+            size="md"
+            color="text.white"
+            textAlign="center"
+            paddingY={[2]}
+          >
             {title}
           </Heading>
+
+          <Text color="text.white" fontSize="xs" textAlign="center">
+            {info}
+          </Text>
         </CardHeader>
 
-        <LearnMoreButton />
+        <Flex width="100%" paddingY={[4]} justifyContent="center">
+          {buttonComponent}
+        </Flex>
 
-        <EmissionsOffsetDisplay width={"100%"} value={100} />
+        {offsetComponent}
+
+        <Box
+          width="100%"
+          paddingY={[4]}
+          paddingX={[3]}
+          backgroundColor="background.white"
+          borderTopRadius="xl"
+        >
+          {ratingComponent}
+        </Box>
       </VStack>
     </Card>
-  );
-};
-
-const LearnMoreButton = () => {
-  return (
-    <Button variant="solid" backgroundColor="button.blue" color="text.white">
-      Learn More
-    </Button>
-  );
-};
-
-interface EnmissionsDisplayProps extends FlexProps {
-  value: number;
-  text?: string;
-}
-const EmissionsOffsetDisplay = ({
-  text = "Emissions offset:",
-  value,
-  ...flexProps
-}: EnmissionsDisplayProps) => {
-  return (
-    <Flex
-      backgroundColor="background.darkBlue"
-      justifyContent={"space-between"}
-      padding={[3]}
-      borderRadius={"xl"}
-      {...flexProps}
-    >
-      <Text color="text.white" fontSize="sm">
-        {text}
-      </Text>
-      {value}
-    </Flex>
   );
 };

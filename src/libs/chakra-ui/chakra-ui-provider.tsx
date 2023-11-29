@@ -12,7 +12,11 @@ const theme = extendTheme({
       darkBlue: "#151a2f",
     },
     text: {
+      black: "#000",
       white: "#fff",
+    },
+    icon: {
+      yellow: "#f8d03a",
     },
   },
 });

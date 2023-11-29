@@ -4,8 +4,8 @@ import { TripList } from "./trips/trip-list";
 
 /*
  * Requirements:
- * ● The website should be responsive and built with ReactJS functional components and Typescript
- * ● ChakraUI should be used for UI components
+ * X The website should be responsive and built with ReactJS functional components and Typescript
+ * X ChakraUI should be used for UI components
  * ● Data should be downloaded asynchronously from a mock server - serving json files (any technology)
  * ● Details of a trip should be pulled from a separate single-trip endpoint
  * ● New cards should be loaded on page scroll (infinite scrolling)
