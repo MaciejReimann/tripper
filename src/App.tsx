@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import trips from "./trips/trips.json";
+import { TripList } from "./trips/trip-list";
 
 /*
  * Requirements:
@@ -15,9 +15,11 @@ import trips from "./trips/trips.json";
  */
 
 function App() {
-  console.log(trips);
-
-  return <>Trips</>;
+  return (
+    <>
+      <TripList />
+    </>
+  );
 }
 
 export default App;
