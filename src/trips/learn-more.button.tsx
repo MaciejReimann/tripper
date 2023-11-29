@@ -1,18 +1,21 @@
-import { Button } from "@chakra-ui/react";
+import { Button, ButtonProps } from "@chakra-ui/react";
 
-interface LearnMoreButtonProps {
-  renderChildren: (text: string) => React.ReactNode;
+interface LearnMoreButtonProps extends ButtonProps {
+  text?: string;
 }
 
-export const LearnMoreButton = ({ renderChildren }: LearnMoreButtonProps) => {
+export const LearnMoreButton = ({
+  text = "Learn More",
+  ...buttonProps
+}: LearnMoreButtonProps) => {
   return (
     <Button
-      variant="solid"
       backgroundColor="button.blue"
       color="text.white"
       fontSize="sm"
+      {...buttonProps}
     >
-      {renderChildren("Learn More")}
+      {text}
     </Button>
   );
 };

@@ -1,32 +1,20 @@
-import * as React from "react";
 import { Container, SimpleGrid, Center, useTheme } from "@chakra-ui/react";
 import pluralize from "pluralize";
+import { useLoaderData } from "react-router-typesafe";
 import { Link } from "react-router-dom";
 
-import { fetchTrips, Trip } from "./fetch-trips";
-import { TripCard } from "./trip-card";
+import { tripsLoader } from "../router";
+import { TripCard } from "./trip-list.card";
 import { LearnMoreButton } from "./learn-more.button";
-import { EmissionsOffsetDisplay } from "./emissions-offset-display";
-import { TripRatingDisplay } from "./trip-rating-display";
+import { EmissionsOffsetDisplay } from "./emissions-offset.box";
+import { TripRatingDisplay } from "./trip-rating.box";
 
 interface TripListProps {}
 
-export const TripList = ({}: TripListProps) => {
-  const [trips, setTrips] = React.useState<Trip[] | undefined>(undefined);
+export const TripListPage = ({}: TripListProps) => {
+  const { trips } = useLoaderData<typeof tripsLoader>();
 
-  React.useEffect(() => {
-    const getTrips = async () => {
-      const trips = await fetchTrips();
-      setTrips(trips);
-    };
-    getTrips();
-  }, []);
-
-  const theme = useTheme();
-
-  if (theme) {
-    console.log(theme);
-  }
+  // const theme = useTheme();
 
   return (
     <Center w="100vw" backgroundColor="background.grey">
@@ -40,11 +28,16 @@ export const TripList = ({}: TripListProps) => {
                 title={trip.title}
                 info={formatTripInfo(trip.countries.length, trip.days)}
                 buttonComponent={
-                  <LearnMoreButton
-                    renderChildren={(text) => (
-                      <Link to={`/${trip.id}`}>{text}</Link>
-                    )}
-                  />
+                  <Link
+                    to={`/trips/${trip.id}`}
+                    // TODO: investigate if it's even possible to call createRouter after msw is initialized AND get access to href
+                    // to={createRouter().href({
+                    //   path: "/trips/:tripId",
+                    //   params: { tripId: String(trip.id) },
+                    // })}
+                  >
+                    <LearnMoreButton />
+                  </Link>
                 }
                 offsetComponent={
                   <EmissionsOffsetDisplay

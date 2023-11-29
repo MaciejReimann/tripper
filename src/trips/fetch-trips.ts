@@ -3,11 +3,18 @@ import z from "zod";
 
 export type Trip = z.infer<typeof tripSchema>;
 
-export const fetchTrips = async () => {
-  const { data: trips } = await axios.get("/trips");
-  const dtos = trips.map(createTripDto);
+// TODO: consider using repository pattern
 
-  return dtos;
+export const fetchTrips = async () => {
+  const { data: trips } = await axios.get(`/trips`);
+
+  return createTripDtos(trips);
+};
+
+export const fetchTrip = async (id: string) => {
+  const { data: trip } = await axios.get(`/trips/${id}`);
+
+  return createTripDto(trip);
 };
 
 const tripAdvantageSchema = z.object({
@@ -27,6 +34,12 @@ const tripSchema = z.object({
   days: z.number(),
   photoUrl: z.string(),
 });
+
+const createTripDtos = (tripsData: any[]) => {
+  const dtos = tripsData.map(createTripDto);
+
+  return dtos;
+};
 
 const createTripDto = (tripData: any) => {
   // TODO: consider safe parsing
