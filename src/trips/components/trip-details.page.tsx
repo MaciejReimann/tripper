@@ -1,5 +1,6 @@
 import * as React from "react";
-import { useLoaderData } from "react-router-typesafe";
+import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
 import pluralize from "pluralize";
 import {
   Flex,
@@ -21,7 +22,7 @@ import { PiSuitcaseSimple } from "react-icons/pi";
 import { BiWorld } from "react-icons/bi";
 import { GoPeople } from "react-icons/go";
 
-import { tripLoader } from "../../router";
+import { fetchTrip } from "../fetch-trips";
 import { TripDetailsLayout } from "./trip-details.layout";
 
 interface TripDetailsPageProps {
@@ -29,7 +30,17 @@ interface TripDetailsPageProps {
 }
 
 export const TripDetailsPage = ({}: TripDetailsPageProps) => {
-  const { trip } = useLoaderData<typeof tripLoader>();
+  let { tripId } = useParams();
+  const {
+    isError,
+    isLoading,
+    isSuccess,
+    data: trip,
+  } = useQuery(["trip", tripId], () => fetchTrip(tripId));
+
+  if (!trip) {
+    return null;
+  }
 
   return (
     <TripDetailsLayout

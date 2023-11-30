@@ -1,6 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+
 import { ChakraUIProvider } from "./libs/chakra-ui/chakra-ui-provider";
 
 import { createRouter } from "./router";
@@ -12,10 +14,12 @@ import { createRouter } from "./router";
  * X Data should be downloaded asynchronously from a mock server - serving json files (any technology)
  * X Details of a trip should be pulled from a separate single-trip endpoint
  * ● New cards should be loaded on page scroll (infinite scrolling)
- * ● Data from the server should be cached and preserved between pages
+ * X Data from the server should be cached and preserved between pages
  * ● The code should be placed in any repository along with instructions on how to run the project
  * ● [Nice to have] Unit tests
  */
+
+export const queryClient = new QueryClient();
 
 async function enableMocking() {
   // TODO: decide when we want to use msw
@@ -30,7 +34,9 @@ enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
       <ChakraUIProvider>
-        <RouterProvider router={createRouter().router} />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={createRouter().router} />
+        </QueryClientProvider>
       </ChakraUIProvider>
     </React.StrictMode>
   );

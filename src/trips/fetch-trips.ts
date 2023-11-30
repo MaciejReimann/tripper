@@ -6,15 +6,15 @@ import { Rating } from "./rating";
 
 export type Trip = z.infer<typeof tripSchema>;
 
-// TODO: consider using repository pattern
-
 export const fetchTrips = async () => {
   const { data: trips } = await axios.get(`/trips`);
 
   return createTripDtos(trips);
 };
 
-export const fetchTrip = async (id: string) => {
+export const fetchTrip = async (id?: string) => {
+  if (!id) return;
+
   const { data: trip } = await axios.get(`/trips/${id}`);
 
   return createTripDto(trip);
@@ -45,7 +45,6 @@ const createTripDtos = (tripsData: any[]) => {
 };
 
 const createTripDto = (tripData: any) => {
-  // TODO: consider safe parsing
   const { co2kilograms, rating, ...parsed } = tripSchema.parse(tripData);
 
   const dto = {
