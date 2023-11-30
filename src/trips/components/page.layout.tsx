@@ -9,7 +9,7 @@ export const PageLayout = ({ children, ...centerProps }: PageLayoutProps) => {
   return (
     <Center w="100vw" backgroundColor="background.grey" {...centerProps}>
       <Container
-        maxW="container.xxl"
+        maxW="container.xl"
         centerContent
         paddingY={[4]}
         paddingX={[4, 8]}
