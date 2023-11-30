@@ -7,13 +7,15 @@ const theme = extendTheme({
       blue: "#4066bd",
     },
     background: {
-      grey: "#f5f5f6",
       white: "#fff",
-      darkBlue: "#151a2f",
+      grey: "#f5f5f6",
+      darkGrey: "#151a2f",
     },
     text: {
-      black: "#000",
       white: "#fff",
+      grey: "#59666d",
+      darkGrey: "#151a2f",
+      black: "#1a1f32",
     },
     icon: {
       yellow: "#f8d03a",

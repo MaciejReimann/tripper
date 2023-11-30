@@ -4,6 +4,8 @@ import { fetchTrips, fetchTrip } from "./trips/fetch-trips";
 import { TripListPage } from "./trips/trip-list.page.tsx";
 import { TripDetailsPage } from "./trips/trip-details.page.tsx";
 
+// Allows us to preserve type safety across router's loaders
+// Reference: https://github.com/fredericoo/react-router-typesafe
 export const tripsLoader = (async () => {
   const trips = await fetchTrips();
 
@@ -20,6 +22,8 @@ export const tripLoader = (async ({ params }) => {
   return { trip };
 }) satisfies LoaderFunction;
 
+// createBrowserRouter needs to be called after MSW is initialized
+// Reference: https://github.com/mswjs/msw/issues/1653#issuecomment-1781867559
 export const createRouter = () =>
   typesafeBrowserRouter([
     {

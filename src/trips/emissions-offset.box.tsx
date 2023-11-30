@@ -13,7 +13,7 @@ export const EmissionsOffsetDisplay = ({
 }: EnmissionsDisplayProps) => {
   return (
     <Flex
-      backgroundColor="background.darkBlue"
+      backgroundColor="background.darkGrey"
       justifyContent={"space-between"}
       padding={[3]}
       borderRadius={"xl"}

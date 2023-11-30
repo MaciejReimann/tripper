@@ -1,18 +1,15 @@
 import * as React from "react";
-
 import {
   Card,
   CardHeader,
   Heading,
   Text,
-  Button,
   VStack,
   Flex,
   Box,
-  FlexProps,
 } from "@chakra-ui/react";
 
-interface TripCardProps {
+interface TripListCardProps {
   imageURL: string;
   title: string;
   info: string;
@@ -21,14 +18,14 @@ interface TripCardProps {
   ratingComponent: React.ReactNode;
 }
 
-export const TripCard = ({
+export const TripListCard = ({
   imageURL,
   title,
   info,
   buttonComponent,
   offsetComponent,
   ratingComponent,
-}: TripCardProps) => {
+}: TripListCardProps) => {
   return (
     <Card
       padding={[3]}
