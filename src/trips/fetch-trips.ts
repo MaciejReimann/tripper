@@ -6,8 +6,8 @@ import { Rating } from "./rating";
 
 export type Trip = z.infer<typeof tripSchema>;
 
-export const fetchTrips = async () => {
-  const { data: trips } = await axios.get(`/trips`);
+export const fetchTrips = async (page?: string) => {
+  const { data: trips } = await axios.get(`/trips?page=${page}`);
 
   return createTripDtos(trips);
 };
@@ -32,7 +32,7 @@ const tripSchema = z.object({
   description: z.string(),
   rating: z.number(),
   advantages: z.array(tripAdvantageSchema),
-  co2kilograms: z.number(), // TODO initialize OffsetEmission value object
+  co2kilograms: z.number(),
   countries: z.array(z.string()),
   days: z.number(),
   photoUrl: z.string(),
