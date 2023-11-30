@@ -1,8 +1,8 @@
 import { Text, Flex, FlexProps } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
-import { getIconsCount, IconsCount } from "./get-icons-count";
-import { Rating } from "./rating";
+import { getIconsCount, IconsCount } from "../get-icons-count";
+import { Rating } from "../rating";
 
 interface TripRatingDisplayProps extends FlexProps {
   value: Rating;

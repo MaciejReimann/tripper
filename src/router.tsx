@@ -1,8 +1,8 @@
 import { typesafeBrowserRouter, LoaderFunction } from "react-router-typesafe";
 
 import { fetchTrips, fetchTrip } from "./trips/fetch-trips";
-import { TripListPage } from "./trips/trip-list.page.tsx";
-import { TripDetailsPage } from "./trips/trip-details.page.tsx";
+import { TripListPage } from "./trips/components/trip-list.page.tsx";
+import { TripDetailsPage } from "./trips/components/trip-details.page.tsx";
 
 // Allows us to preserve type safety across router's loaders
 // Reference: https://github.com/fredericoo/react-router-typesafe

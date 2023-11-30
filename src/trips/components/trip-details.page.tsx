@@ -21,7 +21,7 @@ import { PiSuitcaseSimple } from "react-icons/pi";
 import { BiWorld } from "react-icons/bi";
 import { GoPeople } from "react-icons/go";
 
-import { tripLoader } from "../router";
+import { tripLoader } from "../../router";
 import { TripDetailsLayout } from "./trip-details.layout";
 
 interface TripDetailsPageProps {

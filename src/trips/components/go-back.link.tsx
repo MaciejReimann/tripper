@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 import { Button, ButtonProps } from "@chakra-ui/react";
 
-interface GoBackLinkProps extends ButtonProps {}
+interface GoBackLinkProps extends ButtonProps {
+  text?: string;
+}
 
-export const GoBackLink = ({ ...buttonProps }: GoBackLinkProps) => {
+export const GoBackLink = ({
+  text = "Go back",
+  ...buttonProps
+}: GoBackLinkProps) => {
   return (
     <Link to={".."}>
       <Button
@@ -13,7 +18,7 @@ export const GoBackLink = ({ ...buttonProps }: GoBackLinkProps) => {
         as="u"
         {...buttonProps}
       >
-        Go back
+        {text}
       </Button>
     </Link>
   );

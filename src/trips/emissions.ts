@@ -1,5 +1,5 @@
 export class Emissions {
-  private co2Symbol = "\u2082";
+  private co2EquivalentSymbol = "CO\u2082e";
 
   constructor(private readonly kilograms: number) {
     if (kilograms < 0) {
@@ -8,10 +8,22 @@ export class Emissions {
   }
 
   toString() {
+    return `${this.convertUnits()} ${this.co2EquivalentSymbol}`;
+  }
+
+  private convertUnits() {
     if (this.kilograms < 1000) {
-      return `${this.kilograms} kg CO2e`;
-    } else {
-      return `${(this.kilograms / 1000).toFixed(1)} t CO${this.co2Symbol}e`;
+      return this.toKilograms();
     }
+
+    return this.toMetricTonnes();
+  }
+
+  private toMetricTonnes() {
+    return `${(this.kilograms / 1000).toFixed(1)} t`;
+  }
+
+  private toKilograms() {
+    return `${this.kilograms} kg`;
   }
 }

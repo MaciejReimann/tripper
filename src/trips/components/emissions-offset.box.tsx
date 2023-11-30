@@ -1,16 +1,16 @@
 import { Text, Flex, FlexProps } from "@chakra-ui/react";
 
-import { Emissions } from "./emissions";
+import { Emissions } from "../emissions";
 
-interface EnmissionsDisplayProps extends FlexProps {
+interface EmissionsOffsetBoxProps extends FlexProps {
   value: Emissions;
   text?: string;
 }
-export const EmissionsOffsetDisplay = ({
+export const EmissionsOffsetBox = ({
   text = "Emissions offset",
   value,
   ...flexProps
-}: EnmissionsDisplayProps) => {
+}: EmissionsOffsetBoxProps) => {
   return (
     <Flex
       backgroundColor="background.darkGrey"

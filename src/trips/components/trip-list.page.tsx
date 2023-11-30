@@ -3,11 +3,11 @@ import { useLoaderData } from "react-router-typesafe";
 import { Link } from "react-router-dom";
 import { SimpleGrid, useTheme } from "@chakra-ui/react";
 
-import { tripsLoader } from "../router";
+import { tripsLoader } from "../../router";
 import { PageLayout } from "./page.layout";
 import { TripListCard } from "./trip-list.card";
 import { LearnMoreButton } from "./learn-more.button";
-import { EmissionsOffsetDisplay } from "./emissions-offset.box";
+import { EmissionsOffsetBox } from "./emissions-offset.box";
 import { TripRatingDisplay } from "./trip-rating.box";
 
 interface TripListProps {}
@@ -43,7 +43,7 @@ export const TripListPage = ({}: TripListProps) => {
                 </Link>
               }
               offsetComponent={
-                <EmissionsOffsetDisplay width={"100%"} value={trip.emissions} />
+                <EmissionsOffsetBox width={"100%"} value={trip.emissions} />
               }
               ratingComponent={<TripRatingDisplay value={trip.rating} />}
             />
