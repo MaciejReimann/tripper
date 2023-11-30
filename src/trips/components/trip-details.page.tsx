@@ -15,6 +15,7 @@ import {
   VStack,
   Box,
   Divider,
+  Progress,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { RiFlag2Line } from "react-icons/ri";
@@ -24,6 +25,7 @@ import { GoPeople } from "react-icons/go";
 
 import { fetchTrip } from "../fetch-trips";
 import { TripDetailsLayout } from "./trip-details.layout";
+import { ApiErrorAlert } from "./api-error.alert";
 
 interface TripDetailsPageProps {
   children?: React.ReactNode;
@@ -34,12 +36,16 @@ export const TripDetailsPage = ({}: TripDetailsPageProps) => {
   const {
     isError,
     isLoading,
-    isSuccess,
     data: trip,
   } = useQuery(["trip", tripId], () => fetchTrip(tripId));
 
   if (!trip) {
-    return null;
+    return (
+      <>
+        {isError && <ApiErrorAlert />}
+        {isLoading && <Progress size="xs" isIndeterminate />}
+      </>
+    );
   }
 
   return (

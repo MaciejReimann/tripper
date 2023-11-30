@@ -1,13 +1,13 @@
 import React from "react";
-import { Container, Center } from "@chakra-ui/react";
+import { Container, Center, CenterProps } from "@chakra-ui/react";
 
-interface PageLayoutProps {
+interface PageLayoutProps extends CenterProps {
   children: React.ReactNode;
 }
 
-export const PageLayout = ({ children }: PageLayoutProps) => {
+export const PageLayout = ({ children, ...centerProps }: PageLayoutProps) => {
   return (
-    <Center w="100vw" backgroundColor="background.grey">
+    <Center w="100vw" backgroundColor="background.grey" {...centerProps}>
       <Container
         maxW="container.xxl"
         centerContent

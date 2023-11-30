@@ -6,8 +6,15 @@ import { Rating } from "./rating";
 
 export type Trip = z.infer<typeof tripSchema>;
 
-export const fetchTrips = async (page?: string) => {
-  const { data: trips } = await axios.get(`/trips?page=${page}`);
+export const fetchTrips = async (count: number, page?: number) => {
+  const urlSearchParams = new URLSearchParams();
+
+  urlSearchParams.append("count", count.toString());
+  page && urlSearchParams.append("page", page.toString());
+  const params = urlSearchParams.toString();
+
+  console.log("params", params);
+  const { data: trips } = await axios.get(`/trips?${params}`);
 
   return createTripDtos(trips);
 };
@@ -18,6 +25,24 @@ export const fetchTrip = async (id?: string) => {
   const { data: trip } = await axios.get(`/trips/${id}`);
 
   return createTripDto(trip);
+};
+
+const createTripDto = (tripData: any) => {
+  const { co2kilograms, rating, ...parsed } = tripSchema.parse(tripData);
+
+  const dto = {
+    ...parsed,
+    rating: new Rating(rating),
+    emissions: new Emissions(co2kilograms),
+  };
+
+  return dto;
+};
+
+const createTripDtos = (tripsData: any[]) => {
+  const dtos = tripsData.map(createTripDto);
+
+  return dtos;
 };
 
 const tripAdvantageSchema = z.object({
@@ -37,21 +62,3 @@ const tripSchema = z.object({
   days: z.number(),
   photoUrl: z.string(),
 });
-
-const createTripDtos = (tripsData: any[]) => {
-  const dtos = tripsData.map(createTripDto);
-
-  return dtos;
-};
-
-const createTripDto = (tripData: any) => {
-  const { co2kilograms, rating, ...parsed } = tripSchema.parse(tripData);
-
-  const dto = {
-    ...parsed,
-    rating: new Rating(rating),
-    emissions: new Emissions(co2kilograms),
-  };
-
-  return dto;
-};

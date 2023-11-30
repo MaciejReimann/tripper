@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useParams } from "react-router-dom";
 import { Grid, GridItem, Flex } from "@chakra-ui/react";
 
 import { PageLayout } from "./page.layout";
@@ -16,8 +15,6 @@ export const TripDetailsLayout = ({
   leftSide,
   rightSide,
 }: TripDetailsLayoutProps) => {
-  const { tripId } = useParams();
-  console.log("id", tripId);
   return (
     <PageLayout>
       <Grid width="100%" templateColumns="repeat(12, 1fr)" gap={8}>
