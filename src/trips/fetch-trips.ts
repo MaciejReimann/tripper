@@ -13,7 +13,6 @@ export const fetchTrips = async (count: number, page?: number) => {
   page && urlSearchParams.append("page", page.toString());
   const params = urlSearchParams.toString();
 
-  console.log("params", params);
   const { data: trips } = await axios.get(`/trips?${params}`);
 
   return createTripDtos(trips);
