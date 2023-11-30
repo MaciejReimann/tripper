@@ -1,7 +1,9 @@
 import { Text, Flex, FlexProps } from "@chakra-ui/react";
 
+import { Emissions } from "./emissions";
+
 interface EnmissionsDisplayProps extends FlexProps {
-  value: number;
+  value: Emissions;
   text?: string;
 }
 export const EmissionsOffsetDisplay = ({
@@ -21,7 +23,7 @@ export const EmissionsOffsetDisplay = ({
         {text}:
       </Text>
       <Text color="text.white" fontSize="sm" fontWeight="semibold">
-        {value}
+        {value.toString()}
       </Text>
     </Flex>
   );

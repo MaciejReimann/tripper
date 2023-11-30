@@ -31,6 +31,8 @@ export const TripListPage = ({}: TripListProps) => {
                   <Link
                     to={`/trips/${trip.id}`}
                     // TODO: investigate if it's even possible to call createRouter after msw is initialized AND get access to href
+                    // https://github.com/fredericoo/react-router-typesafe
+                    // https://github.com/mswjs/msw/issues/1653#issuecomment-1781867559
                     // to={createRouter().href({
                     //   path: "/trips/:tripId",
                     //   params: { tripId: String(trip.id) },
@@ -42,7 +44,7 @@ export const TripListPage = ({}: TripListProps) => {
                 offsetComponent={
                   <EmissionsOffsetDisplay
                     width={"100%"}
-                    value={trip.co2kilograms}
+                    value={trip.emissions}
                   />
                 } // TODO: use Value Object
                 ratingComponent={<TripRatingDisplay value={trip.rating} />}

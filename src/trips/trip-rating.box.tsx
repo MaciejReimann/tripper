@@ -2,11 +2,12 @@ import { Text, Flex, FlexProps } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
 import { getIconsCount, IconsCount } from "./get-icons-count";
+import { Rating } from "./rating";
 
 interface TripRatingDisplayProps extends FlexProps {
-  value: number;
+  value: Rating;
   text?: string;
-  getIconsCountForValue?: (rating: number) => IconsCount;
+  getIconsCountForValue?: (rating: Rating) => IconsCount;
 }
 
 export const TripRatingDisplay = ({
@@ -33,7 +34,7 @@ export const TripRatingDisplay = ({
         </Flex>
 
         <Text color="text.black" fontSize="sm" fontWeight="semibold">
-          {value}
+          {value.toString()}
         </Text>
       </Flex>
     </Flex>
